@@ -1,0 +1,77 @@
+<div *ngIf="userLoger && userLoger.tipoUsuario === 'Especialista'">
+    <app-navbar></app-navbar>
+</div>
+
+<!-- Interfaz de chat -->
+
+<!-- Interfaz de chat cliente -->
+<div class="cardContainertext text-center" *ngIf="userLoger && userLoger.tipoUsuario === 'Cliente'">
+    <div class="scrollable-container d-flex flex-column">
+        <div *ngFor="let especialista of especialistas" class="d-flex flex-row card-bodytext">
+            <div class="contenedorPfl">
+                <div class="contact-card d-flex flex-row shadow-sm" (click)="seleccionarChat(especialista.IdUsuario)">
+                    <img [src]="especialista.Foto" alt="{{ especialista.NombreCompleto }}" class="contact-avatar">
+                    <div class="contact-info d-flex flex-column">
+                        <h5>{{ especialista.NombreCompleto }}</h5>
+                        <p><strong>Especialidad:</strong> {{ especialista.Especialidad }}</p>
+                        <p><strong>Años de experiencia:</strong> {{ especialista.YearsExperience }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Interfaz de chat especialista -->
+<div class="cardContainertext text-center" *ngIf="userLoger && userLoger.tipoUsuario === 'Especialista'">
+    <div class="scrollable-container d-flex flex-column">
+        <div *ngFor="let cliente of clientes" class="d-flex flex-row card-bodytext">
+            <div *ngIf="cliente.chatActivo && cliente.mostrar">
+                <div class="contenedorPfl">
+                    <div class="contact-card d-flex flex-row shadow-sm" (click)="seleccionarChat(cliente.IdUsuario)">
+                        <img [src]="cliente.Foto" alt="{{ cliente.Nombre }}" class="contact-avatar">
+                        <div class="contact-info d-flex flex-column">
+                            <h5>{{ cliente.Nombre }}</h5>
+                            <p><strong>Edad:</strong> {{ cliente.Edad }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Textos -->
+<div class="card text-center cardContainer" *ngIf="userLoger && !mostrarChat">
+    <div class="card-body d-flex flex-column">
+        <h1>Inicia Un Chat Con {{ userLoger.tipoUsuario === 'Cliente'? 'Especialistas' : 'Un Cliente' }}</h1>
+    </div>
+</div>
+
+<div class="card text-center cardContainer" *ngIf="userLoger && mostrarChat">
+    <div class="card-header">
+        Chat
+        <div (keydown.escape)="mostrarChat=false"></div>
+    </div>
+    <div class="card-body d-flex flex-column">
+        <div id="contenedorMsj" class="contenedorMsj flex-grow-1 h-100">
+            <p *ngFor="let mensaje of mensajes" class=" msj p-2"
+                [ngClass]="(user.IdUsuario==mensaje.IdEmisor)? 'enviado' : 'recibido'">
+                {{mensaje.Texto}}
+            </p>
+        </div>
+    </div>
+    <form class="card-footer text-muted input-group" (ngSubmit)="EnviarMensaje()">
+        <div (keydown.enter)="EnviarMensaje()"></div>
+        <input type="text" class="form-control" placeholder="Escribre un mensaje" [(ngModel)]="nuevoMensaje"
+            [ngModelOptions]="{standalone : true}">
+        <div class="input-group-append" (click)="EnviarMensaje()">
+            <span class="input-group-text" id="basic-addon2">
+                <img class="imgEnviar" src="https://cdn-icons-png.flaticon.com/512/660/660619.png" width="30px"
+                    alt="send message">
+            </span>
+        </div>
+    </form>
+</div>
