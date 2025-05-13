@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+  <div class="container">
+    <a class="navbar-brand custom-brand d-flex align-items-center" href="/inicioE">
+      <img src="assets/logo.jpeg" alt="Logo SanaConexión" style="height: 30px; margin-right: 10px;">
+      SanaConexión
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
+            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active custom-link" aria-current="page" href="/inicioE">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link custom-link" href="/mensajeria">Mensajería</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle custom-link" href="#" id="formsDropdown" role="button" 
+             data-bs-toggle="dropdown" aria-expanded="false">
+            Formularios
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="formsDropdown">
+            <li><a class="dropdown-item" href="/formE#crear-formulario">Crear formulario</a></li>
+            <li><a class="dropdown-item" href="/formE#tus-formularios">Tus formularios</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link custom-link" href="/expedientes">Expedientes</a>
+        </li>
+      </ul>
+      
+      <div class="d-flex align-items-center" *ngIf="isLoggedIn">
+        <div class="dropdown" *ngFor="let usuario of usuarios">
+          <span class="text-white me-2">{{ usuario.NombreCompleto }}</span>
+          <img src="assets/avatar.png" alt="User" class="dropdown-toggle" 
+               id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" routerLink="/mi-perfil">Mi perfil</a></li>
+            <li><a class="dropdown-item" (click)="logout()">Cerrar sesión</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

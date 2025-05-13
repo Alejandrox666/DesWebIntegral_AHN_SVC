@@ -1,0 +1,79 @@
+/* Navbar principal */
+.navbar-custom {
+  background-color: #1abc9c !important;
+  padding: 0.5rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Asegura que el navbar se expanda correctamente */
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding: 0.5rem 1rem;
+}
+
+/* Estilos para los enlaces */
+.custom-link {
+  color: #fff !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.custom-link:hover, 
+.custom-link:focus {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.custom-link.active {
+  font-weight: 600;
+}
+
+/* Dropdown styles */
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+  padding: 0.5rem 1.5rem;
+  color: #333;
+  transition: all 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #1abc9c;
+}
+
+/* User dropdown */
+.dropdown-toggle {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.dropdown-toggle:hover {
+  transform: scale(1.05);
+}
+
+/* Navbar toggler */
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    padding: 1rem 0;
+    background-color: rgba(26, 188, 156, 0.98);
+    margin-top: 0.5rem;
+    border-radius: 0.25rem;
+  }
+  
+  .dropdown-menu {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+}
